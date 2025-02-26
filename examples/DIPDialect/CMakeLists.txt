@@ -21,13 +21,15 @@ if(BUDDY_ENABLE_OPENCV)
 endif()
 
 add_executable(rotation2D rotation2D.cpp)
-target_link_libraries(rotation2D ${DIP_LIBS})
+target_link_directories(rotation2D PRIVATE "../../llvm/build/lib")
+target_link_libraries(rotation2D ${DIP_LIBS} omp)
 
 add_executable(rotation4D rotation4D.cpp)
 target_link_libraries(rotation4D ${DIP_LIBS})
 
 add_executable(resize2D resize2D.cpp)
-target_link_libraries(resize2D ${DIP_LIBS})
+target_link_directories(resize2D PRIVATE "../../llvm/build/lib")
+target_link_libraries(resize2D ${DIP_LIBS} omp)
 
 add_executable(resize4D_nhwc resize4D_nhwc.cpp)
 target_link_libraries(resize4D_nhwc ${DIP_LIBS})

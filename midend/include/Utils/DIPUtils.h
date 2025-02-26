@@ -187,6 +187,18 @@ void NearestNeighbourInterpolationResizing(
     Value inputRowLastElemF32, Value inputColLastElemF32, VectorType vectorTy32,
     int64_t stride, Value c0, Value c0F32);
 
+void NearestNeighbourInterpolationResizingNew(OpBuilder &builder, Location loc,
+                                              MLIRContext *ctx, Value input,
+                                              Value output,
+                                              Value horizontalScalingFactor,
+                                              Value verticalScalingFactor);
+
+void BilinearInterpolationResizingNew(OpBuilder &builder, Location loc,
+                                      MLIRContext *ctx, Value input,
+                                      Value output,
+                                      Value horizontalScalingFactor,
+                                      Value verticalScalingFactor);
+
 // Helper function for resizing 4D an image using nearest neighbour
 // interpolation mechanism.
 void NearestNeighbourInterpolationResizing4D(

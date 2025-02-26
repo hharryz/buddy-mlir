@@ -36,8 +36,8 @@ bool testImplementation(int argc, char *argv[]) {
   Img<float, 2> input = dip::imread<float, 2>(argv[1], dip::IMGRD_GRAYSCALE);
 
   intptr_t outputSize[2] = {250, 100}; // {image_cols, image_rows}
-  std::vector<float> scalingRatios = {
-      0.25, 0.1}; // {col_scaling_ratio, row_scaling_ratio}
+  // std::vector<float> scalingRatios = {
+  //     0.25, 0.1}; // {col_scaling_ratio, row_scaling_ratio}
 
   // dip::Resize2D() can be called with either scaling ratios
   // (Output image dimension / Input image dimension) for both dimensions or
@@ -45,11 +45,11 @@ bool testImplementation(int argc, char *argv[]) {
   // Note : Both values in output image dimensions and scaling ratios must be
   // positive numbers.
 
-  MemRef<float, 2> output = dip::Resize2D(
-      &input, dip::INTERPOLATION_TYPE::NEAREST_NEIGHBOUR_INTERPOLATION,
-      outputSize);
   // MemRef<float, 2> output = dip::Resize2D(
-  //     &input, dip::INTERPOLATION_TYPE::BILINEAR_INTERPOLATION, outputSize);
+  //     &input, dip::INTERPOLATION_TYPE::NEAREST_NEIGHBOUR_INTERPOLATION,
+  //     outputSize);
+  MemRef<float, 2> output = dip::Resize2D(
+      &input, dip::INTERPOLATION_TYPE::BILINEAR_INTERPOLATION, outputSize);
 
   // MemRef<float, 2> output = dip::Resize2D(
   //     &input, dip::INTERPOLATION_TYPE::NEAREST_NEIGHBOUR_INTERPOLATION,
@@ -61,7 +61,7 @@ bool testImplementation(int argc, char *argv[]) {
   // Define Img with the output of Resize2D.
   intptr_t sizes[2] = {output.getSizes()[0], output.getSizes()[1]};
 
-  Img<float, 2> outputImageResize2D(output.getData(),sizes);
+  Img<float, 2> outputImageResize2D(output.getData(), sizes);
 
   dip::imwrite(argv[2], outputImageResize2D);
 
